@@ -89,6 +89,17 @@ public class Ride implements RideInterface {
         }
     }
 
+    // ------------------------------ Part4B：排序方法实现 ------------------------------
+    public void sortRideHistory(Comparator<Visitor> comparator) {
+        if (rideHistory.isEmpty()) {
+            System.out.println(rideName + " 骑乘历史为空，无需排序");
+            return;
+        }
+        // Part4B要求：用Collections.sort+Comparator排序（不能用Comparable）
+        Collections.sort(rideHistory, comparator);
+        System.out.println(rideName + " 骑乘历史排序完成");
+    }
+
     // 未实现的接口方法（保留空实现）
     @Override public void runOneCycle() {}
 }

@@ -1,15 +1,17 @@
 public class AssignmentTwo {
     public static void main(String[] args) {
         AssignmentTwo demo = new AssignmentTwo();
-        demo.partThree();   // 运行Part3
-        demo.partFourA();   // 运行Part4A
+        demo.partThree();   // Part3
+        demo.partFourA();   // Part4A
+        demo.partFourB();   // Part4B
+        demo.partFive();    // Part5
     }
 
-    // Part3演示（保留，无修改）
+    // Part3演示（更新构造函数：添加maxRider参数）
     public void partThree() {
         System.out.println("\n========== Part3：队列管理演示 ==========");
         Employee operator = new Employee("张三", 30, "13800138000", "EMP001", "过山车操作");
-        Ride rollerCoaster = new Ride("过山车", "刺激类", operator);
+        Ride rollerCoaster = new Ride("过山车", "刺激类", operator, 2); // 新增maxRider=2
         rollerCoaster.addVisitorToQueue(new Visitor("Jack", 20, "12345", "VIS001", true));
         rollerCoaster.addVisitorToQueue(new Visitor("Sharon", 25, "67890", "VIS002", false));
         rollerCoaster.addVisitorToQueue(new Visitor("Benny", 18, "11223", "VIS003", true));
@@ -26,7 +28,7 @@ public class AssignmentTwo {
         // 创建操作员
         Employee operator = new Employee("李四", 28, "13900139000", "EMP002", "雷暴飞车操作");
         // 创建Ride对象
-        Ride thunderstorm = new Ride("雷暴飞车", "极速类", operator);
+        Ride thunderstorm = new Ride("雷暴飞车", "极速类", operator, 4);// 新增maxRider=4
         // 添加5个游客到历史（Part4A要求：至少5个）
         Visitor v1 = new Visitor("Tom", 23, "77889", "VIS006", true);
         Visitor v2 = new Visitor("Sherly", 21, "99001", "VIS007", false);
@@ -53,7 +55,7 @@ public class AssignmentTwo {
         // 创建操作员
         Employee operator = new Employee("王五", 32, "13700137000", "EMP003", "海盗船操作");
         // 创建Ride对象
-        Ride pirateShip = new Ride("海盗船", "摇摆类", operator);
+        Ride pirateShip = new Ride("海盗船", "摇摆类", operator, 3);新增maxRider=3
         // 添加5个游客到历史（Part4B要求：至少5个）
         pirateShip.addVisitorToHistory(new Visitor("Alice", 19, "11122", "VIS012", false));
         pirateShip.addVisitorToHistory(new Visitor("Mike", 25, "22233", "VIS013", true));
@@ -70,8 +72,30 @@ public class AssignmentTwo {
         pirateShip.printRideHistory();
     }
 
+   // ------------------------------ Part5：周期运行演示 ------------------------------
+    public void partFive() {
+        System.out.println("\n========== Part5：骑乘周期运行演示 ==========");
+        // 创建操作员
+        Employee operator = new Employee("赵六", 35, "13600136000", "EMP004", "摩天轮操作");
+        // 创建Ride对象（maxRider=6，单周期最多6人）
+        Ride ferrisWheel = new Ride("摩天轮", "观光类", operator, 6);
+        // 添加10个游客到队列（Part5要求：至少10个）
+        for (int i = 1; i <= 10; i++) {
+            ferrisWheel.addVisitorToQueue(new Visitor("游客" + i, 18 + i, "100" + i, "VIS0" + (16 + i), i % 2 == 0));
+        }
+        // 运行前打印队列
+        System.out.println("运行前等待队列：");
+        ferrisWheel.printQueue();
+        // 运行1个周期
+        ferrisWheel.runOneCycle();
+        // 运行后打印队列和历史
+        System.out.println("运行后等待队列：");
+        ferrisWheel.printQueue();
+        System.out.println("运行后骑乘历史：");
+        ferrisWheel.printRideHistory();
+    }
+
     // 其他演示方法（空实现，保留）
-    public void partFive() {}
     public void partSix() {}
     public void partSeven() {}
 }

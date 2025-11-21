@@ -47,8 +47,30 @@ public class AssignmentTwo {
         thunderstorm.printRideHistory();
     }
 
+   // ------------------------------ Part4B：排序演示 ------------------------------
+    public void partFourB() {
+        System.out.println("\n========== Part4B：历史排序演示 ==========");
+        // 创建操作员
+        Employee operator = new Employee("王五", 32, "13700137000", "EMP003", "海盗船操作");
+        // 创建Ride对象
+        Ride pirateShip = new Ride("海盗船", "摇摆类", operator);
+        // 添加5个游客到历史（Part4B要求：至少5个）
+        pirateShip.addVisitorToHistory(new Visitor("Alice", 19, "11122", "VIS012", false));
+        pirateShip.addVisitorToHistory(new Visitor("Mike", 25, "22233", "VIS013", true));
+        pirateShip.addVisitorToHistory(new Visitor("Emma", 19, "33344", "VIS014", true));
+        pirateShip.addVisitorToHistory(new Visitor("Ryan", 28, "44455", "VIS015", false));
+        pirateShip.addVisitorToHistory(new Visitor("Chloe", 25, "55566", "VIS016", true));
+        // 排序前打印
+        System.out.println("排序前：");
+        pirateShip.printRideHistory();
+        // 用自定义Comparator排序
+        pirateShip.sortRideHistory(new VisitorComparator());
+        // 排序后打印（验证结果）
+        System.out.println("排序后（年龄升序，会员在前）：");
+        pirateShip.printRideHistory();
+    }
+
     // 其他演示方法（空实现，保留）
-    public void partFourB() {}
     public void partFive() {}
     public void partSix() {}
     public void partSeven() {}
